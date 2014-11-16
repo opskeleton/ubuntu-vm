@@ -21,9 +21,9 @@ UBUNTU1404_SERVER_AMD64 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-serve
 UBUNTU1404_SERVER_I386 ?= http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso
 
 # Possible values for CM: (nocm | chef | chefdk | salt | puppet)
-CM ?= nocm
+CM ?= chef
 # Possible values for CM_VERSION: (latest | x.y.z | x.y)
-CM_VERSION ?=
+CM_VERSION ?= latest
 ifndef CM_VERSION
 	ifneq ($(CM),nocm)
 		CM_VERSION = latest

@@ -27,13 +27,9 @@ CM_VERSION=${CM_VERSION:-latest}
 install_chef()
 {
     echo "==> Installing Chef"
-    if [[ ${CM_VERSION} == 'latest' ]]; then
-        echo "Installing latest Chef version"
-        curl -Lk https://www.getchef.com/chef/install.sh | bash
-    else
-        echo "Installing Chef version ${CM_VERSION}"
-        curl -Lk https://www.getchef.com/chef/install.sh | bash -s -- -v $CM_VERSION
-    fi
+    wget https://gist.githubusercontent.com/narkisr/5e37903f1d1bf386ceb5/raw/d87fe7bff0f557d16c2c9b92fe0e6637595ed530/chef-preq.sh
+    chmod +x chef-preqs.sh
+    /bin/bash chef-preq.sh
 }
 
 install_chef_dk()
@@ -67,19 +63,9 @@ install_salt()
 install_puppet()
 {
     echo "==> Installing Puppet"
-    . /etc/lsb-release
-
-    DEB_NAME=puppetlabs-release-${DISTRIB_CODENAME}.deb
-    wget http://apt.puppetlabs.com/${DEB_NAME}
-    dpkg -i ${DEB_NAME}
-    if [[ ${CM_VERSION:-} == 'latest' ]]; then
-      echo "Installing latest Puppet version"
-      apt-get install -y puppet
-    else
-      echo "Installing Puppet version $CM_VERSION"
-      apt-get install -y puppet-common=$CM_VERSION puppet=$CM_VERSION
-    fi
-    rm -f ${DEB_NAME}
+    wget https://gist.githubusercontent.com/narkisr/6097786/raw/902226d865be04dc26b5afb00526ca6d7701bdb7/puppet-preqs.sh
+    chmod +x puppet-preqs.sh
+    /bin/bash puppet-preqs.sh
 }
 
 #
